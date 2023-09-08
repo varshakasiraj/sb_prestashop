@@ -1,0 +1,11 @@
+*ERROR* 	v1.7.8.8	2023/09/04 - 16:40:39: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;&#039; at line 1&lt;br /&gt;&lt;br /&gt;&lt;pre&gt;SELECT * FROM `ps_category_product` WHERE`id_product`= &lt;/pre&gt; at line 769 in file classes/db/Db.php
+*ERROR* 	v1.7.8.8	2023/09/04 - 18:05:19: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;order.`id_order`,customer.`firstname`,customer.`email` FROM`ps_orders` as ord...&#039; at line 1&lt;br /&gt;&lt;br /&gt;&lt;pre&gt;SELECT order.`id_order`,customer.`firstname`,customer.`email` FROM`ps_orders` as order
+         LEFT JOIN `ps_customer` as customer on 
+         `ps_orders`.`id_customer` = `ps_customer`.`id_customer`;&lt;/pre&gt; at line 769 in file classes/db/Db.php
+*ERROR* 	v1.7.8.8	2023/09/04 - 18:06:05: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;order.`id_order`,customer.`firstname`,customer.`email` FROM`ps_orders` as ord...&#039; at line 1&lt;br /&gt;&lt;br /&gt;&lt;pre&gt;SELECT order.`id_order`,customer.`firstname`,customer.`email` FROM`ps_orders` as order
+         LEFT JOIN `ps_customer` as customer on 
+         order.`id_customer` = customer.`id_customer`;&lt;/pre&gt; at line 769 in file classes/db/Db.php
+*ERROR* 	v1.7.8.8	2023/09/04 - 18:16:29: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;as c on 
+         o.`id_customer` = c.`id_customer`&#039; at line 2&lt;br /&gt;&lt;br /&gt;&lt;pre&gt;SELECT o.`id_order`,c.`firstname`,c.`email` FROM`ps_orders` as o
+         LEFT JOIN ps_`customer` as c on 
+         o.`id_customer` = c.`id_customer`;&lt;/pre&gt; at line 769 in file classes/db/Db.php

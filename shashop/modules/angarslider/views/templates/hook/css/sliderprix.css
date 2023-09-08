@@ -1,0 +1,216 @@
+.btnprix{
+    position: absolute;
+    left: 0;
+    bottom: 75px;
+    padding: 0px 5px 0px 5px;
+    border-radius: 15px;
+    margin: 195px 45%;
+    background-color: #3B78DD;
+    text-align: center;
+    font-size: 10px;
+    color: #f0f0f0;
+}
+
+.valeurPrix2 {
+    position: absolute;
+    left: 0;
+    bottom: 55px;
+    width: 150px;
+    padding: 15px 0px 5px 0px;
+    border-radius: 10px;
+    margin: 166px 43%;
+    font-size: 25px;
+    background-color: #00000085;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.ancienprix{
+    font-size:12px;
+    color: grey;
+}
+
+@media all and (min-width: 1100px) and (max-width: 1480px)
+{
+    .btnprix{
+        bottom: 75px;
+        padding: 0px 5px 0px 5px;
+        margin: 123px 45.5%;
+        font-size: 10px;
+    }
+
+    .valeurPrix2 {
+        bottom: 55px;
+        width: 120px;
+        padding: 15px 0px 5px 0px;
+        margin: 94px 43.5%;
+        font-size: 25px;
+    }
+}
+
+@media all and (min-width: 950px) and (max-width: 1099px)
+{
+    .btnprix{
+        bottom: 5px;
+        padding: 0px 5px 0px 5px;
+        margin: 12.5% 44.2%;
+        font-size: 6px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 3px;
+        width: 58px;
+        padding: 6px 0px 2px 0px;
+        border-radius: 5px;
+        margin: 9% 43.4%;
+        font-size: 10px;
+    }
+
+    .ancienprix{
+        font-size:8px;
+    }
+}
+
+@media all and (min-width: 820px) and (max-width: 949px)
+{
+    .btnprix{
+        bottom: 5px;
+        padding: 0px 5px 0px 5px;
+        margin: 13% 44.2%;
+        font-size: 6px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 3px;
+        width: 58px;
+        padding: 6px 0px 2px 0px;
+        border-radius: 5px;
+        margin: 9% 43.4%;
+        font-size: 10px;
+    }
+
+    .ancienprix{
+        font-size:8px;
+    }
+}
+
+@media all and (min-width: 700px) and (max-width: 819px)
+{
+    .btnprix{
+        bottom: 7px;
+        padding: 0px 5px 0px 5px;
+        margin: 11.4% 43.5%;
+        font-size: 4px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 3px;
+        width: 45px;
+        padding: 2px 0px 0px 0px;
+        border-radius: 5px;
+        margin: 7.6% 43%;
+        font-size: 7px;
+    }
+
+    .ancienprix{
+        font-size:5px;
+    }
+}
+
+@media all and (min-width: 600px) and (max-width: 699px)
+{
+    .btnprix{
+        bottom: 14px;
+        padding: 0px 5px 0px 5px;
+        margin: 11.8% 43.8%;
+        font-size: 4px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 8px;
+        width: 45px;
+        padding: 2px 0px 0px 0px;
+        border-radius: 5px;
+        margin: 7.6% 43%;
+        font-size: 7px;
+    }
+
+    .ancienprix{
+        font-size:5px;
+    }
+}
+
+@media all and (min-width: 500px) and (max-width: 599px)
+{
+    .btnprix{
+        bottom: 14px;
+        padding: 0px 5px 0px 5px;
+        margin: 11.4% 43.5%;
+        font-size: 4px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 8px;
+        width: 45px;
+        padding: 2px 0px 0px 0px;
+        border-radius: 5px;
+        margin: 6.6% 42.5%;
+        font-size: 7px;
+    }
+
+    .ancienprix{
+        font-size:5px;
+    }
+}
+
+@media all and (min-width: 401px) and (max-width: 499px)
+{
+    .btnprix{
+        bottom: 9px;
+        padding: 0px 5px 0px 5px;
+        margin: 12.5% 43.5%;
+        font-size: 3px;
+        width: 30px;
+    }
+
+
+    .valeurPrix2 {
+        bottom: 8px;
+        width: 45px;
+        padding: 2px 0px 0px 0px;
+        border-radius: 5px;
+        margin: 5.6% 42%;
+        font-size: 5px;
+    }
+
+    .ancienprix{
+        font-size:3px;
+    }
+}
+
+@media screen and (max-width : 400px)
+{
+    .btnprix{
+      display: none;
+    }
+
+
+    .valeurPrix2 {
+        display: none;
+    }
+    .ancienprix{
+        display: none;
+    }
+}
+
+
+
+
+
+
