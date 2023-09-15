@@ -27,7 +27,9 @@ class sb_export_customer extends Module{
         if(Tools::isSubmit('filterbydate')){
             $start_date = Tools::getValue('start_date');
             $end_date = Tools::getValue('end_date');
-            $result= $this->getCustomerDetailsFromDB($start_date,$end_date);
+            $order_id = Tools::getValue('order_status');
+            var_dump($order_id); 
+            $result= $this->getCustomerDetailsFromDB($start_date,$end_date,$order_id);
             if(!empty($result)){
                 $this->exportCustomerDetails($result);
             }
@@ -63,12 +65,18 @@ class sb_export_customer extends Module{
         header('Content-Length: '.filesize($file_path));
         readfile($file_path);
     }
-    public function getCustomerDetailsFromDB($start_date="",$end_date=""){
+    public function getCustomerDetailsFromDB($start_date="",$end_date="",$order_id=""){
         $db = \Db::getInstance();
-        $request = "SELECT o.`id_order`,c.`firstname`,c.`email` FROM `"._DB_PREFIX_."orders` as o
-         LEFT JOIN `"._DB_PREFIX_."customer` as c on 
-         o.`id_customer` = c.`id_customer`  Where`email` NOT LIKE '%@prestashop.com' 
-         AND c.`date_add` BETWEEN '".$start_date."' AND '".$end_date."';";
+        $request = "SELECT  x.`id_order`,x.`firstname`,x.`email` 
+        from (
+            SELECT o.`id_order`,c.`firstname`,c.`email` ,
+            ROW_NUMBER() OVER (PARTITION BY o.`id_customer` Order by  o.`id_order` ASC) as groupedcustomer
+            FROM `"._DB_PREFIX_."orders` as o
+            LEFT JOIN `"._DB_PREFIX_."customer` as c on o.`id_customer` = c.`id_customer`
+            LEFT JOIN `"._DB_PREFIX_."order_history` as ohs on o.`id_order` = ohs.`id_order` 
+            Where`email` NOT LIKE '%@prestashop.com' AND c.`date_add`
+         AND c.`date_add` BETWEEN '".$start_date."' AND '".$end_date."' AND ohs.`id_order_state` = ".$order_id
+         .") as x  WHERE   x.groupedcustomer <=3;";
         $result = $db->executeS($request);
         return $result;
     }
@@ -119,6 +127,13 @@ class sb_export_customer extends Module{
                         'required' => true,
                         'label' =>'End Date',
                         'placeholder' => $this->l('2023-10-30')
+                    ),
+                    array(
+                        'type' => 'text',
+                        'name' => 'order_status',
+                        'required' => true,
+                        'label' =>'Order id',
+                        'placeholder' => $this->l('3')
                     ),
                 ),
                     'submit' =>[
