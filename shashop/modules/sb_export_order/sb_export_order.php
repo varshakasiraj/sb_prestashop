@@ -9,8 +9,6 @@ class sb_export_order extends Module{
         $this->author = 'PrestaShop';
         $this->bootstrap = true;
         parent::__construct();
-       // $this->createExportOrderTable();
-        //$this->createOrderDetailsTable();
         $this->displayName = $this->trans('sb_export_order');
         $this->description = $this->trans('Export customer and order deatils');
         $this->insertFiledIntoProductOrderdetails();
@@ -18,18 +16,12 @@ class sb_export_order extends Module{
     }
     public function install()
     {
-        return parent::install();
-        // if(!parent::install() || !$this->createOrderDetailsTable() || !$this->createExportOrderTable()){
-        //     return false;
-        // }
-        // return true;
+        return parent::install() && $this->createExportOrderTable()
+        && $this->createOrderDetailsTable();
     }
     public function uninstall(){
         return parent::uninstall();
     }
-    // public function getContent(){
-    //   return $this->insertFiledIntoProductOrderdetails();
-    // }
     public function createOrderDetailsTable(){
         
         $db = \Db::getInstance();
