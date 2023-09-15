@@ -28,7 +28,6 @@ class sb_export_customer extends Module{
             $start_date = Tools::getValue('start_date');
             $end_date = Tools::getValue('end_date');
             $order_id = Tools::getValue('order_status');
-            var_dump($order_id); 
             $result= $this->getCustomerDetailsFromDB($start_date,$end_date,$order_id);
             if(!empty($result)){
                 $this->exportCustomerDetails($result);
