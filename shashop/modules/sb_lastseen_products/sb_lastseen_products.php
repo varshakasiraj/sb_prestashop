@@ -4,6 +4,7 @@ use PrestaShop\PrestaShop\Adapter\Image\ImageRetriever;
 use PrestaShop\PrestaShop\Adapter\Product\PriceFormatter;
 use PrestaShop\PrestaShop\Adapter\Product\ProductColorsRetriever;
 class sb_lastseen_products extends Module{
+    protected static $cache_products;
     public function __construct()
     {
         $this->name = 'sb_lastseen_products';
@@ -27,33 +28,27 @@ class sb_lastseen_products extends Module{
         $this->context->controller->registerJavascript('sb_lastseen_products', '/modules/sb_lastseen_products/js/sb_lastseen_products.js', ['position' => 'bottom', 'priority' => 1000]);
         
     }
-    public  function hookDisplayTop(){
-
-    }
     public function hookDisplayHome(){
-        // $this->context->smarty->assign(
-        //     [
-        //         "product"=>"hi"
-        //     ]
-        //     );
+      
         return  $this->display(__FILE__, 'sb_lastseen_products.tpl');
     }
-    public function getProduct($product_ids,$product_id,$full,$id_lang,$id_shop){
+    public function getProduct($product_ids,$full,$id_lang,$id_shop){
         if(!empty($product_ids)){
-            $get_localstorage_product_ids = explode(',',$_GET["product_ids"]);  
+            $get_localstorage_product_ids = explode(',',$product_ids);  
             $i=0;
-            $products_details = array();
+            $result = array();
             foreach($get_localstorage_product_ids as $product_ids){
                   if($i==0){
                       $i++;
                       continue;
                   }
-                  $product=new Product($product_id,$full,$id_lang,$id_shop);
-                  $product_details = $this->getProductById($id_lang, (int) $product_id);
+                  $product = new Product($product_ids,$full,$id_lang,$id_shop);
+                  $product_details = $this->getProductById($id_lang, (int) $product_ids);
                 $result['products'][]=$this->getProductTemplate($product_details);    
-            } 
+            }
+            return sb_lastseen_products::$cache_products = $result;   
         }
-        return $products_details;
+        return sb_lastseen_products::$cache_products;
     }
     public static function getProductById($id_lang, $product_id, $page_number = 0, $nb_products = 10, $count = false, $order_by = null, $order_way = null, Context $context = null) {
 

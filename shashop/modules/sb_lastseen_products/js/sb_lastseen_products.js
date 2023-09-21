@@ -5,6 +5,7 @@ sb.core = function () {
             jQuery(document).ready(self.ready);
         },
         ready: function () {
+            self.getlocalstorageproductsid();
             var get_product_ids = localStorage.getItem("product_ids");
             var current_product_id = jQuery("#product_page_product_id").attr("value");
             
@@ -15,7 +16,7 @@ sb.core = function () {
                 productArray = self.savearrayinlocalstorage(current_product_id,get_product_ids);
             }
             localStorage.setItem("product_ids", productArray);
-            self.getlocalstorageproductsid();
+            
          },
          savearrayinlocalstorage: function(current_product_id ,get_product_ids){
                 var  Array_product = get_product_ids.split(',');    
@@ -28,13 +29,16 @@ sb.core = function () {
          getlocalstorageproductsid:function(){
             var get_product_ids = localStorage.getItem("product_ids");
             console.log(get_product_ids);
-            var productDataUrl = '/shashop/modules/sb_lastseen_products/ajaxcall.php?q=';
+            var productDataUrl = '/shashop/modules/sb_lastseen_products/ajaxcall.php?product_ids='+get_product_ids;
             $.ajax({
                 url: productDataUrl,
-                dataType: 'json',
-                data :{'product_ids':get_product_ids},
+                type : 'POST',
+                data : {
+                    ajax: true,
+                    action: "fetchTPL",
+                },
                 success: function (response) {
-                    (".sb_lastseen").append(response);
+                    $(".recently_viewed_product").append(response);
                 }
             });
         }
